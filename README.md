@@ -69,45 +69,45 @@ launchPassWallet(getApplicationContext(), Uri.parse("http://test.attidomobile.co
 ### Kotlin samle:
 ```kotlin
 private fun launchPassWallet(applicationContext: Context?, uri: Uri, launchGooglePlay: Boolean): Boolean {
-   if (null != applicationContext) {
-       val packageManager = applicationContext.packageManager
-       if (null != packageManager) {
-           val strPackageName = “com.attidomobile.passwallet”
-           val startIntent = Intent()
-           startIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-           startIntent.action = Intent.ACTION_VIEW
-           val passWalletLaunchIntent = packageManager.getLaunchIntentForPackage(strPackageName)
-           if (null == passWalletLaunchIntent) {
-               // PassWallet isn’t installed, open Google Play:
-               if (launchGooglePlay) {
-                   val strReferrer = try {
-                       val strEncodedURL = URLEncoder.encode(uri.toString(), “UTF-8")
-                       “&referrer=$strEncodedURL”
-                   } catch (e: UnsupportedEncodingException) {
-                       e.printStackTrace()
-                       “”
-                   }
+    if (null != applicationContext) {
+        val packageManager = applicationContext.packageManager
+        if (null != packageManager) {
+            val strPackageName = "com.attidomobile.passwallet"
+            val startIntent = Intent()
+            startIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startIntent.action = Intent.ACTION_VIEW
+            val passWalletLaunchIntent = packageManager.getLaunchIntentForPackage(strPackageName)
+            if (null == passWalletLaunchIntent) {
+                // PassWallet isn't installed, open Google Play:
+                if (launchGooglePlay) {
+                    val strReferrer = try {
+                        val strEncodedURL = URLEncoder.encode(uri.toString(), "UTF-8")
+                        "&referrer=$strEncodedURL"
+                    } catch (e: UnsupportedEncodingException) {
+                        e.printStackTrace()
+                        ""
+                    }
 
-                   try {
-                       startIntent.data = Uri.parse(“market://details?id=$strPackageName$strReferrer”)
-                       applicationContext.startActivity(startIntent)
-                   } catch (anfe: android.content.ActivityNotFoundException) {
-                       // Google Play not installed, open via website
-                       startIntent.data = Uri.parse(“http://play.google.com/store/apps/details?id=$strPackageName$strReferrer“)
-                       applicationContext.startActivity(startIntent)
-                   }
-               }
-           } else {
-               val strClassName = “com.attidomobile.passwallet.ui.main.MainActivity”
-               startIntent.setClassName(strPackageName, strClassName)
-               startIntent.addCategory(Intent.CATEGORY_BROWSABLE)
-               startIntent.setDataAndType(uri, “application/vnd.apple.pkpass”)
-               applicationContext.startActivity(startIntent)
-               return true
-           }
-       }
-   }
-   return false
+                    try {
+                        startIntent.data = Uri.parse("market://details?id=$strPackageName$strReferrer")
+                        applicationContext.startActivity(startIntent)
+                    } catch (anfe: android.content.ActivityNotFoundException) {
+                        // Google Play not installed, open via website
+                        startIntent.data = Uri.parse("http://play.google.com/store/apps/details?id=$strPackageName$strReferrer")
+                        applicationContext.startActivity(startIntent)
+                    }
+                }
+            } else {
+                val strClassName = "com.attidomobile.passwallet.ui.main.MainActivity"
+                startIntent.setClassName(strPackageName, strClassName)
+                startIntent.addCategory(Intent.CATEGORY_BROWSABLE)
+                startIntent.setDataAndType(uri, "application/vnd.apple.pkpass")
+                applicationContext.startActivity(startIntent)
+                return true
+            }
+        }
+    }
+    return false
 }
 ```
 # FAQ
