@@ -11,8 +11,8 @@ and send it via email or other messengers, for example:
 ```
 https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=http://test.attidomobile.com/PassWallet/Passes/AttidoMobile.pkpass
 ```
-The following link will launch PassWallet from an Android app if installed, or launch Google Play if not.
-The pass will be imported into the app after launch.
+The following link will launch PassWallet Android app if installed, or launch Google Play if not.
+The pass will be imported automatically into the app after launch.
 
 ## Launching PassWallet from an Android app
 The following code will launch PassWallet from an Android app if installed, or launch Google Play if not.
