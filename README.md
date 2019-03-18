@@ -66,7 +66,7 @@ And an example call is:
 ```java
 launchPassWallet(getApplicationContext(), Uri.parse("http://test.attidomobile.com/PassWallet/Passes/AttidoMobile.pkpass"), true);
 ```
-### Kotlin samle:
+### Kotlin sample:
 ```kotlin
 private fun launchPassWallet(applicationContext: Context?, uri: Uri, launchGooglePlay: Boolean): Boolean {
     if (null != applicationContext) {
