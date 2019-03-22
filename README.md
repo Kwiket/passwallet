@@ -9,7 +9,7 @@ https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=$HTTP_LINK_TO
 ```
 and send it via email or other messengers, for example:
 ```
-https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=http://test.attidomobile.com/PassWallet/Passes/AttidoMobile.pkpass
+https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=https://quicket.io/demopass/AttidoMobile.pkpass
 ```
 The following link will launch PassWallet Android app if installed, or launch Google Play if not.
 The pass will be imported automatically into the app after launch.
@@ -64,7 +64,7 @@ private static boolean launchPassWallet(Context applicationContext, Uri uri, boo
 ```
 And an example call is:
 ```java
-launchPassWallet(getApplicationContext(), Uri.parse("http://test.attidomobile.com/PassWallet/Passes/AttidoMobile.pkpass"), true);
+launchPassWallet(getApplicationContext(), Uri.parse("https://quicket.io/demopass/AttidoMobile.pkpass"), true);
 ```
 ### Kotlin sample:
 ```kotlin
