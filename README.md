@@ -110,5 +110,43 @@ private fun launchPassWallet(applicationContext: Context?, uri: Uri, launchGoogl
     return false
 }
 ```
+
+# Push Notifications
+## Registering a Device to Receive Push Notifications for a Pass
+In addition to the web service detailed in the Apple document [Passbook Web Service Reference](https://developer.apple.com/library/archive/documentation/PassKit/Reference/PassKit_WebService/WebService.html), we require an additional endpoint for registering PassWallet devices.
+This has been kept similar to the standard Apple registration endpoint in order to reduce the work required, but is created as a new endpoint so as to not cause potential issues with services that do not support PassWallet’s update method.
+Registration is performed via a POST request to:
+
+`webServiceURL/version/devices/deviceLibraryIdentifier/registrations_attido/passTyp
+eIdentifier/serialNumber`
+
+### Parameters
+* **webServiceURL** - The URL to your web service, as specified in the pass.
+* **version** - The protocol version. Currently, v1.
+* **deviceLibraryIdentifier** - A unique identifier that is used to identify and
+authenticate this device in future requests.
+* **passTypeIdentifier** - The pass’s type, as specified in the pass.
+* **serialNumber** - The pass’s serial number, as specified in the pass.
+
+### Header
+The Authorization header is supplied; its value is the word “AttidoPass”, followed by a space, followed by the pass’s authorization token as specified in the pass.
+
+### Payload
+The POST payload is a JSON dictionary, containing two key and value pairs:
+* **pushToken** - The pushtoken that the server can use to send push
+notifications to this device.
+* **pushServiceUrl** - The URL of PassWallet’s web service for posting update
+notifications to devices.
+
+### Response
+* If the serial number is already registered for this device, return HTTP status 200.
+* If registration succeeds, return HTTP status 201.
+* If the request is not authorized, return HTTP status 401.
+* Otherwise, return the appropriate standard HTTP status.
+
+### Discussion
+* The URL of PassWallet’s server should be stored on a per registration basis, and used when an update to the pass occurs.
+
+
 # FAQ
 Can be found here: https://www.facebook.com/notes/passwallet/passwallet-faq/546965562018601
