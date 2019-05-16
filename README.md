@@ -184,8 +184,48 @@ And get this response:
   "status":"OK"
 }
 ```
+## Pushing a pass update notification to multiple devices
 
+In order to notify multiple devices that an update for a pass is available the pass provider should POST a request to:
 
+`pushServiceURL/version/pushUpdates`
+
+### Parameters
+* **pushServiceUrl** - The URL of Attido’s web service, as specified in the registration.
+* **version** - The protocol version. Currently, v1.
+
+### Payload
+The POST payload is a JSON dictionary, containing two key and value pairs:
+* **passTypeID** - The type of the pass that has an update available.
+* **pushTokens** – An array of pushtokens that the server can use to send push notifications to the devices.
+
+### Response
+* If the push notification succeeds, returns HTTP status 200.
+* If the push notification fails returns 400, and the response body contains
+details of the error.
+
+### Example
+To post the following JSON:
+```json
+{
+  "passTypeID":"pass.attidomobile.test",
+  "pushTokens":[
+    "cbc8f59160b949199b40ffe21cd2253ef893e4b244944b76ba31b8eaa5f09e69",
+    "a2ee9981afd84d77aa1a2bcf93df49c27d5df254c139458bdace96f7fd50088a",
+    "b8129fb4ebf5423b985075b62f9322a8d67bdec69d3c441bd871f12ede46c93c"
+  ]
+}
+```
+We’d use this `cUrl` command:
+```bash
+curl --data "{\"passTypeID\":\"pass.attidomobile.test\",\"pushTokens\":[\"cbc8f59160b949199b40ffe21cd2253e f893e4b244944b76ba31b8eaa5f09e69\",\"a2ee9981afd84d77aa1a2bcf93df49c27d5df254c139458bdace96f7f d50088a\",\"b8129fb4ebf5423b985075b62f9322a8d67bdec69d3c441bd871f12ede46c93c\"]}" http://proxy.ravensoft.co.uk/PassWallet/v1/pushUpdates
+```
+And get this response:
+```json
+{
+  "status":"OK"
+}
+```
 
 # FAQ
 Can be found here: https://www.facebook.com/notes/passwallet/passwallet-faq/546965562018601
