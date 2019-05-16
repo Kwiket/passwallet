@@ -133,8 +133,7 @@ The Authorization header is supplied; its value is the word “AttidoPass”, fo
 
 ### Payload
 The POST payload is a JSON dictionary, containing two key and value pairs:
-* **pushToken** - The pushtoken that the server can use to send push
-notifications to this device.
+* **pushToken** - The pushtoken that the server can use to send push notifications to this device.
 * **pushServiceUrl** - The URL of PassWallet’s web service for posting update
 notifications to devices.
 
@@ -146,6 +145,46 @@ notifications to devices.
 
 ### Discussion
 * The URL of PassWallet’s server should be stored on a per registration basis, and used when an update to the pass occurs.
+
+## Pushing a pass update notification to a device
+
+In order to notify the device that an update for a pass is available the pass provider should POST a request to:
+
+`pushServiceURL/version/pushUpdate` 
+
+### Parameters
+* **pushServiceUrl** - The URL of PassWallet’s web service, as specified in the registration.
+
+### Payload
+The POST payload is a JSON dictionary, containing two key and value pairs:
+* **passTypeID** - The type of the pass that has an update available.
+* **pushToken** - The pushtoken that the server can use to send push notifications to this device.
+
+### Response
+* If the push notification succeeds, returns HTTP status 200.
+* If the push notification fails returns 400, and the response body contains
+details of the error.
+
+### Example
+To post the following JSON:
+
+```json
+{
+  "passTypeID":"pass.attidomobile.test",
+  "pushToken":"cbc8f59160b949199b40ffe21cd2253ef893e4b244944b76ba31b8eaa5f09e69"
+}
+```
+We’d use this `cUrl` command:
+```bash
+curl --data "{\"passTypeID\":\"pass.attidomobile.test\",\"pushToken\":\"cbc8f59160b949199b40ffe21cd2253ef8 93e4b244944b76ba31b8eaa5f09e69\"}" http://proxy.ravensoft.co.uk/PassWallet/v1/pushUpdate
+```
+And get this response:
+```json
+{
+  "status":"OK"
+}
+```
+
 
 
 # FAQ
