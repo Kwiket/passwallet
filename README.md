@@ -176,7 +176,7 @@ To post the following JSON:
 ```
 We’d use this `cUrl` command:
 ```bash
-curl --data "{\"passTypeID\":\"pass.attidomobile.test\",\"pushToken\":\"cbc8f59160b949199b40ffe21cd2253ef8 93e4b244944b76ba31b8eaa5f09e69\"}" http://proxy.ravensoft.co.uk/PassWallet/v1/pushUpdate
+curl --data "{\"passTypeID\":\"pass.attidomobile.test\",\"pushToken\":\"cbc8f59160b949199b40ffe21cd2253ef8 93e4b244944b76ba31b8eaa5f09e69\"}" http://push.passwallet.net/v1/pushUpdate
 ```
 And get this response:
 ```json
@@ -218,7 +218,7 @@ To post the following JSON:
 ```
 We’d use this `cUrl` command:
 ```bash
-curl --data "{\"passTypeID\":\"pass.attidomobile.test\",\"pushTokens\":[\"cbc8f59160b949199b40ffe21cd2253e f893e4b244944b76ba31b8eaa5f09e69\",\"a2ee9981afd84d77aa1a2bcf93df49c27d5df254c139458bdace96f7f d50088a\",\"b8129fb4ebf5423b985075b62f9322a8d67bdec69d3c441bd871f12ede46c93c\"]}" http://proxy.ravensoft.co.uk/PassWallet/v1/pushUpdates
+curl --data "{\"passTypeID\":\"pass.attidomobile.test\",\"pushTokens\":[\"cbc8f59160b949199b40ffe21cd2253e f893e4b244944b76ba31b8eaa5f09e69\",\"a2ee9981afd84d77aa1a2bcf93df49c27d5df254c139458bdace96f7f d50088a\",\"b8129fb4ebf5423b985075b62f9322a8d67bdec69d3c441bd871f12ede46c93c\"]}" http://push.passwallet.net/v1/pushUpdates
 ```
 And get this response:
 ```json
