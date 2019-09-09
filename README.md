@@ -64,7 +64,7 @@ private static boolean launchPassWallet(Context applicationContext, Uri uri, boo
 ```
 And an example call is:
 ```java
-launchPassWallet(getApplicationContext(), Uri.parse("https://quicket.io/demopass/AttidoMobile.pkpass"), true);
+launchPassWallet(getApplicationContext(), Uri.parse("http://passwallet.net/demopass/AttidoMobile.pkpass"), true);
 ```
 ### Kotlin sample:
 ```kotlin
