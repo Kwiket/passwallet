@@ -5,12 +5,14 @@ Collect all your Passbook / Apple Wallet (.pkpass files) tickets & coupons, from
 ## Open PassWallet and auto import a pass by link
 Just create a link
 ```
-https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=$HTTP_LINK_TO_PASS_HERE
+https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=$HTTP_URL_ENCODED_LINK_TO_PASS_HERE
 ```
 and send it via email or other messengers, for example:
 ```
 https://passwallet.page.link/?apn=com.attidomobile.passwallet&link=http://passwallet.net/demopass/AttidoMobile.pkpass
 ```
+The `link` param must be a well-formatted URL, be properly URL-encoded, use either HTTP or HTTPS.
+
 The following link will launch PassWallet Android app if installed, or launch Google Play if not.
 The pass will be imported automatically into the app after launch.
 
