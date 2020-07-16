@@ -119,8 +119,7 @@ In addition to the web service detailed in the Apple document [Passbook Web Serv
 This has been kept similar to the standard Apple registration endpoint in order to reduce the work required, but is created as a new endpoint so as to not cause potential issues with services that do not support PassWallet’s update method.
 Registration is performed via a POST request to:
 
-`webServiceURL/version/devices/deviceLibraryIdentifier/registrations_attido/passTyp
-eIdentifier/serialNumber`
+`webServiceURL/version/devices/deviceLibraryIdentifier/registrations_attido/passTypeIdentifier/serialNumber`
 
 ### Parameters
 * **webServiceURL** - The URL to your web service, as specified in the pass.
